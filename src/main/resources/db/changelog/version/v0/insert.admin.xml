@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-1.0.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="agc" id="DEL-11-i-a">
+        <insert schemaName="public" tableName="users">
+            <column name="id" value="1"/>
+            <column name="email" value="root@delphi.com"/>
+            <column name="password" value="$2a$10$UIzi2G.rYU82mPI/.3ILJOnfHZRcU/oYKMrvUm1bBQ5ZOG2IkMhcm"/>
+            <column name="name" value="Root"/>
+            <column name="surnames" value="User"/>
+            <column name="photo" value=""/>
+            <column name="blocked" value="false"/>
+            <column name="needs_onboard" value="true"/>
+            <column name="language_id" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

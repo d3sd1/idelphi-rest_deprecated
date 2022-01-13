@@ -1,0 +1,36 @@
+# This is a sample build configuration for Java (Maven).
+# Check our guides at https://confluence.atlassian.com/x/zd-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: maven:3.6.1-jdk-11
+
+clone:
+  depth: full              # SonarCloud scanner needs the full history to assign issues properly
+
+definitions:
+  caches:
+    sonar: ~/.sonar/cache  # Caching SonarCloud artifacts will speed up your build
+  steps:
+    - step: &build-test-sonarcloud
+        name: Build, test and analyze on SonarCloud
+        caches:
+          - maven
+          - sonar
+        script:
+          - mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        artifacts:
+          - target/**
+pipelines:
+  default:
+    - step: *build-test-sonarcloud
+    - step:
+        script:
+          - mvn package
+          - pipe: atlassian/google-app-engine-deploy:0.7.4
+            variables:
+              KEY_FILE: $KEY_FILE
+              PROJECT: 'agiledelphi'
+              DEPLOYABLES: 'target/app-test.yaml'
+              VERSION: '${BITBUCKET_BUILD_NUMBER}'
+              EXTRA_ARGS: '--verbosity=debug'

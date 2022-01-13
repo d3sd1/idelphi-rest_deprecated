@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-1.0.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="agc" id="REU-01">
+        <comment>Create delphi process tables.</comment>
+        <createTable tableName="delphi_processes">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="picture_url" type="VARCHAR(2000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="description" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="final_comment" type="VARCHAR(5000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="process_finished" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_process_round_questions">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="min_val" type="int" defaultValue="0">
+                <constraints nullable="true"/>
+            </column>
+            <column name="max_val" type="int" defaultValue="10">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_process_rounds">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(2000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="finished" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_position" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="started" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_processes_rounds">
+            <column name="delphi_process_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_processes_rounds_processes_id"
+                             references="delphi_processes(id)"/>
+            </column>
+            <column name="rounds_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_processes_rounds_round_id"
+                             references="delphi_process_rounds(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_processes_coordinators">
+            <column name="delphi_process_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_processes_coordinators_process_id"
+                             references="delphi_processes(id)"/>
+            </column>
+            <column name="coordinators_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_processes_coordinators_coordinator_id"
+                             references="users(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_processes_experts">
+            <column name="delphi_process_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_processes_coordinators_process_id"
+                             references="delphi_processes(id)"/>
+            </column>
+            <column name="experts_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_processes_experts_expert_id"
+                             references="users(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_process_round_question_answers">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="response" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_process_rounds_question_answers_question_id"
+                             references="delphi_process_round_questions(id)"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_process_rounds_question_answers_user_id"
+                             references="users(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_process_rounds_answers">
+            <column name="delphi_process_round_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="delphi_process_rounds_experts_remaining_round_id"
+                             references="delphi_process_rounds(id)"/>
+            </column>
+            <column name="answers_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="delphi_process_rounds_experts_remaining_expert_id"
+                             references="delphi_process_round_question_answers(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_process_rounds_experts_remaining">
+            <column name="delphi_process_round_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="delphi_process_rounds_experts_remaining_round_id"
+                             references="delphi_process_rounds(id)"/>
+            </column>
+            <column name="experts_remaining_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="delphi_process_rounds_experts_remaining_expert_id"
+                             references="users(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_process_rounds_questions">
+            <column name="delphi_process_round_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_delphi_process_rounds_questions_delphi_process_round_id"
+                             references="delphi_process_rounds(id)"/>
+            </column>
+            <column name="questions_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_delphi_process_rounds_questions_questions_id"
+                             references="delphi_process_round_questions(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="delphi_process_rounds_experts_voted">
+            <column name="delphi_process_round_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="delphi_process_rounds_experts_voted_round_id"
+                             references="delphi_process_rounds(id)"/>
+            </column>
+            <column name="experts_voted_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="delphi_process_rounds_experts_voted_expert_id"
+                             references="users(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

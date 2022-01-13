@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-1.0.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="agc" id="NIGHTLY_HF_02">
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="10"/>
+            <column name="url_pattern" value="/v?/session/password/recover"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="11"/>
+            <column name="url_pattern" value="/v?/session/password/reset"/>
+            <column name="excludes" value="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

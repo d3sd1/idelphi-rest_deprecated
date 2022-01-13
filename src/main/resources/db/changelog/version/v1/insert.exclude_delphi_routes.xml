@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-1.0.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="agc" id="HFR-01">
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="9"/>
+            <column name="url_pattern" value="/v?/delphi/**"/>
+            <column name="excludes" value="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

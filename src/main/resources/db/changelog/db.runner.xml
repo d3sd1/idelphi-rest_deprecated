@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-master.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <!-- V0 -->
+    <include file="version/v0/fix.hibernate.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/schema.languages.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/insert.languages.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/schema.user-and-permissions.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/schema.user_chats.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/schema.jwt.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/schema.filter_jwt_configs.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/insert.filter_jwt_exclusions.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/insert.admin.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/schema.delphi_process.xml" relativeToChangelogFile="true"/>
+    <include file="version/v0/schema.media.xml" relativeToChangelogFile="true"/>
+
+    <!-- V1 NIGHTLY -->
+    <include file="version/v1/insert.languages_de.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod.delphi_process.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod.delphi_process_round_question_answers.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod.delphi_process_round_questions.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod_fix.delphi_process_round_questions.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod.delphi_process_round_categories.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema.tmp_rest_json.xml" relativeToChangelogFile="true"/>
+
+    <!-- V1.1 NIGHTLY -->
+    <include file="version/v1/insert.exclude_delphi_routes.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema.password_recover.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/insert.exclude_delphi_routes_forgot_pass.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod.delphi_process_objectives.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod_fix.user_lang_not_null.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod_fix.process_add_current_round.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod_fix.process_current_round_allow_null_date.xml" relativeToChangelogFile="true"/>
+    <include file="version/v1/schema_mod_fix.process_add_max_selectable.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

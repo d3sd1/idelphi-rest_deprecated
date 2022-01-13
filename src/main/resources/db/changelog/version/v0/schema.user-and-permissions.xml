@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-1.0.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="agc" id="DEL-11">
+        <comment>Create user table.</comment>
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="surnames" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="photo" type="VARCHAR(1500)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="blocked" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="boolean" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="chat_status" type="SMALLINT" defaultValue="0">
+            </column>
+            <column name="needs_onboard" type="boolean" defaultValue="true">
+            </column>
+            <column name="notification_status" type="boolean" defaultValue="true">
+            </column>
+            <column name="language_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_users_language_id"
+                             references="languages(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

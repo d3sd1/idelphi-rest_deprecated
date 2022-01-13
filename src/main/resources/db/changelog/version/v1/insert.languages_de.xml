@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-1.0.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="agc" id="NIGHTLY_1">
+        <insert schemaName="public" tableName="languages">
+            <column name="id" value="3"/>
+            <column name="key_name" value="DE"/>
+            <column name="available" value="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,7 @@
+runtime: java11
+
+handlers:
+  - url: /.*
+    script: this field is required, but ignored
+
+service: prod

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" logicalFilePath="db.changelog-1.0.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="agc" id="DEL-4z">
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="1"/>
+            <column name="url_pattern" value="/v?/session/login"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="2"/>
+            <column name="url_pattern" value="/v?/session/register"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="3"/>
+            <column name="url_pattern" value="/v?/session/forgot_password"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="4"/>
+            <column name="url_pattern" value="/v?/version/**"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="5"/>
+            <column name="url_pattern" value="/swagger-ui/**"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="6"/>
+            <column name="url_pattern" value="/api-docs/**"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="7"/>
+            <column name="url_pattern" value="/ws/**"/>
+            <column name="excludes" value="true"/>
+        </insert>
+        <insert schemaName="public" tableName="filter_jwt_configs">
+            <column name="id" value="8"/>
+            <column name="url_pattern" value="/v?/media/**"/>
+            <column name="excludes" value="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
